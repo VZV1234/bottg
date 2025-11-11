@@ -14,8 +14,6 @@ bot = telebot.TeleBot(BOTTOKEN)
 @bot.message_handler(commands=['start'])
 def start(message):
     # Приветствие пользователя
-    photo_path = 'C:/122.jpg'  # Укажите путь к вашей картинке
-
     # Создаем inline-клавиатуру
     markup = types.InlineKeyboardMarkup()
     btn1 = types.InlineKeyboardButton(text="РАСПИСАНИЕ", url="https://p11505.edu35.ru/gmraspisanie/izmeneniya")
@@ -26,9 +24,8 @@ def start(message):
     markup.row(btn3, btn2)
     markup.row(btn4)
 
-    # Отправляем сообщение с inline-клавиатурой и фотографией
-    with open(photo_path, 'rb') as photo_file:
-        bot.send_photo(message.chat.id, photo_file, caption=f'''
+    # Отправляем сообщение с inline-клавиатурой
+    bot.send_message(message.chat.id, f'''
 Привет, {message.from_user.first_name}! 
 Это бот-помощник для студентов Череповецкого химико-технологического колледжа 
 Приятного использования!
